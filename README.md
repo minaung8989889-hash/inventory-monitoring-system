@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Industrial Inventory Monitoring System
 
 ## Features
@@ -140,3 +141,6 @@ From the repo root, run:
 .\scripts\switch-env.ps1 -Profile remote -MongoUri 'mongodb://db.example.com:27017/' -AllowedOrigins 'https://app.example.com' -Environment production -ForceHttps
 .\scripts\switch-env.ps1 -Profile ngrok -UseNgrok
 ```
+=======
+# inventory-monitoring-system
+>>>>>>> 43f996252e7c4eccd155f25e5a1ff66f764f320d
