@@ -1,0 +1,29 @@
+version: '3.8'
+services:
+  mongo:
+    image: mongo:6.0
+    restart: unless-stopped
+    volumes:
+      - mongo-data:/data/db
+    ports:
+      - '27017:27017'
+
+  backend:
+    build: ./backend
+    restart: unless-stopped
+    ports:
+      - '5000:5000'
+    env_file:
+      - ./backend/.env
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/
+      - DATABASE_NAME=inventory_monitoring
+      - ALLOWED_ORIGINS=http://localhost:5000
+      - ENVIRONMENT=development
+      - FORCE_HTTPS=false
+    depends_on:
+      - mongo
+
+volumes:
+  mongo-data:
+    driver: local

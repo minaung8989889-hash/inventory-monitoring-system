@@ -1,0 +1,99 @@
+[
+  {
+    "id": "1a2b3c4d5e6f7g8h",
+    "type": "tab",
+    "label": "Sample HTTP Relay Flow",
+    "disabled": false,
+    "info": "Simulate Modbus values and POST them to the backend API.",
+    "env": []
+  },
+  {
+    "id": "inject-simulate",
+    "type": "inject",
+    "z": "1a2b3c4d5e6f7g8h",
+    "name": "Simulate tank payload",
+    "props": [
+      {
+        "p": "payload"
+      }
+    ],
+    "repeat": "60",
+    "crontab": "",
+    "once": true,
+    "onceDelay": 0.1,
+    "topic": "",
+    "payload": "",
+    "payloadType": "date",
+    "x": 180,
+    "y": 120,
+    "wires": [
+      ["function-build"]
+    ]
+  },
+  {
+    "id": "function-build",
+    "type": "function",
+    "z": "1a2b3c4d5e6f7g8h",
+    "name": "Build relay request",
+    "func": "const payload = {
+    device_id: 'device-001',
+    timestamp: new Date().toISOString(),
+    tank: 'TK101',
+    level: Math.round(Math.random() * 100),
+    temperature: 20 + Math.random() * 10,
+    pressure: 1.0 + Math.random() * 0.5,
+    volume: 1000 + Math.random() * 100
+};
+msg.payload = payload;
+msg.headers = {
+    'Content-Type': 'application/json',
+    'x-api-key': 'YOUR_API_KEY_HERE'
+};
+msg.url = 'http://localhost:5000/api/tanks';
+return msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "initialize": "",
+    "finalize": "",
+    "libs": [],
+    "x": 420,
+    "y": 120,
+    "wires": [
+      ["http-request-send"]
+    ]
+  },
+  {
+    "id": "http-request-send",
+    "type": "http request",
+    "z": "1a2b3c4d5e6f7g8h",
+    "name": "Send to backend",
+    "method": "use",
+    "ret": "obj",
+    "paytoqs": false,
+    "url": "",
+    "tls": "",
+    "persist": false,
+    "proxy": "",
+    "authType": "",
+    "x": 640,
+    "y": 120,
+    "wires": [
+      ["debug-response"]
+    ]
+  },
+  {
+    "id": "debug-response",
+    "type": "debug",
+    "z": "1a2b3c4d5e6f7g8h",
+    "name": "Backend response",
+    "active": true,
+    "tosidebar": true,
+    "console": false,
+    "tostatus": false,
+    "complete": "payload",
+    "targetType": "msg",
+    "x": 860,
+    "y": 120,
+    "wires": []
+  }
+]

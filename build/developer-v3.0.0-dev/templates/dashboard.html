@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard - Industrial Inventory Monitoring</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="page-shell">
+        <header class="page-header">
+            <div>
+                <h1>Dashboard</h1>
+                <p class="subtitle">Live tank insights and system overview.</p>
+                <p class="page-meta">Signed in as <strong id="dashboardUsername">—</strong> (<span id="dashboardRole">—</span>)</p>
+            </div>
+            <nav class="page-nav">
+                <a href="/dashboard">Dashboard</a>
+                <a href="/profile">Profile</a>
+                <a href="/settings">Settings</a>
+                <a href="/user-management">User Management</a>
+                <a href="/privacy">Privacy</a>
+                <a href="/security">Security</a>
+                <a href="/developer">Developer</a>
+                <a href="/pos-management">POS Management</a>
+                <a href="#" id="logoutLink" class="nav-button">Logout</a>
+            </nav>
+        </header>
+        <main class="page-main">
+            <div id="dashboardContent" class="dashboard-summary">
+                <div class="summary-card">
+                    <div class="summary-card-title">Loading</div>
+                    <div class="summary-card-value">Please wait</div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="{{ url_for('static', filename='js/pages/common.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/pages/dashboard.js') }}"></script>
+</body>
+</html>

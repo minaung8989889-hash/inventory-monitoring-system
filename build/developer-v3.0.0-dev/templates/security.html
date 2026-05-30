@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Security - Industrial Inventory Monitoring</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="page-shell">
+        <header class="page-header">
+            <div>
+                <h1>Security</h1>
+                <p class="subtitle">Manage account protection and two-factor authentication.</p>
+            </div>
+            <nav class="page-nav">
+                <a href="/dashboard">Dashboard</a>
+                <a href="/profile">Profile</a>
+                <a href="/settings">Settings</a>
+                <a href="/user-management">User Management</a>
+                <a href="/privacy">Privacy</a>
+                <a href="/security">Security</a>
+                <a href="/developer">Developer</a>
+                <a href="/pos-management">POS Management</a>
+                <a href="#" id="logoutLink" class="nav-button">Logout</a>
+            </nav>
+        </header>
+        <main class="page-main">
+            <section class="settings-card">
+                <h2>Account security</h2>
+                <p><strong>Username:</strong> <span id="securityUsername">—</span></p>
+                <p><strong>2FA status:</strong> <span id="security2faStatus">—</span></p>
+                <div class="auth-actions">
+                    <button class="button" id="enable2faButton">Enable 2FA</button>
+                    <button class="button button-secondary" id="disable2faButton">Disable 2FA</button>
+                </div>
+            </section>
+            <section id="securitySetupInfo" class="settings-card hidden">
+                <h2>2FA setup</h2>
+                <p>Scan the QR code below with an authenticator app.</p>
+                <img id="securityQrCode" class="qr-code" alt="2FA QR code"> 
+                <p class="settings-note">Authenticator URL: <span id="securityTotpUrl"></span></p>
+                <div class="settings-field">
+                    <label for="securityOtp">Verification code</label>
+                    <input id="securityOtp" placeholder="123456">
+                </div>
+                <button class="button" id="verify2faButton">Verify 2FA</button>
+            </section>
+        </main>
+    </div>
+    <script src="{{ url_for('static', filename='js/pages/common.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/pages/security.js') }}"></script>
+</body>
+</html>

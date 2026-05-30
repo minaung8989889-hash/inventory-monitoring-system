@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Developer Panel - Industrial Inventory Monitoring</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="page-shell">
+        <header class="page-header">
+            <div>
+                <h1>Developer Panel</h1>
+                <p class="subtitle">Cloud / home network host config, broker endpoints, and developer API settings.</p>
+                <p class="page-meta">Accessible to <strong>operator</strong>, <strong>master</strong>, and <strong>administrator</strong> users only.</p>
+            </div>
+            <nav class="page-nav">
+                <a href="/dashboard">Dashboard</a>
+                <a href="/profile">Profile</a>
+                <a href="/settings">Settings</a>
+                <a href="/user-management">User Management</a>
+                <a href="/privacy">Privacy</a>
+                <a href="/security">Security</a>
+                <a href="/developer">Developer</a>
+                <a href="/pos-management">POS Management</a>
+                <a href="#" id="logoutLink" class="nav-button">Logout</a>
+            </nav>
+        </header>
+        <main class="page-main">
+            <div id="pageNotice" class="page-notice hidden"></div>
+            <section class="settings-card">
+                <h2>Public Host Configuration</h2>
+                <form id="devSettingsForm">
+                    <div class="settings-field">
+                        <label for="publicIp">Public IP / Hostname</label>
+                        <input type="text" id="publicIp" placeholder="e.g. 203.0.113.10 or example.local">
+                    </div>
+                    <div class="settings-field">
+                        <label for="publicDomain">Public Domain</label>
+                        <input type="text" id="publicDomain" placeholder="e.g. mydomain.example">
+                    </div>
+                    <div class="settings-field">
+                        <label for="publicHost">Public Web Host URL</label>
+                        <input type="text" id="publicHost" placeholder="e.g. https://inventory.example.com">
+                    </div>
+                </form>
+            </section>
+            <section class="settings-card">
+                <h2>Integration Endpoints</h2>
+                <div class="settings-field">
+                    <label for="mqttBroker">MQTT Broker URL</label>
+                    <input type="text" id="mqttBroker" placeholder="e.g. mqtts://mqtt.example.com:8883">
+                </div>
+                <div class="settings-field">
+                    <label for="nodeRedHost">Node-RED Host URL</label>
+                    <input type="text" id="nodeRedHost" placeholder="e.g. https://node-red.example.com">
+                </div>
+            </section>
+            <section class="settings-card">
+                <h2>Data Transmission Settings</h2>
+                <div class="settings-field">
+                    <label for="dataTransmissionTarget">Transmit target</label>
+                    <select id="dataTransmissionTarget">
+                        <option value="cloud">Cloud Server</option>
+                        <option value="internal">Internal Server</option>
+                    </select>
+                </div>
+                <div class="settings-field">
+                    <label for="cloudHost">Cloud endpoint URL</label>
+                    <input type="text" id="cloudHost" placeholder="e.g. https://cloud.example.com/api/data">
+                </div>
+                <div class="settings-field">
+                    <label for="internalHost">Internal host URL</label>
+                    <input type="text" id="internalHost" placeholder="e.g. http://192.168.1.10:5000/api/data">
+                </div>
+                <div class="settings-field">
+                    <label for="dataTransmitMode">Transmit protocol</label>
+                    <select id="dataTransmitMode">
+                        <option value="https">HTTPS</option>
+                        <option value="wss">WSS</option>
+                        <option value="mqtts">MQTTs</option>
+                        <option value="mqtt">MQTT</option>
+                        <option value="ws">WebSocket</option>
+                        <option value="http">HTTP</option>
+                    </select>
+                </div>
+                <div class="settings-field">
+                    <label>
+                        <input type="checkbox" id="encryptionRequired">
+                        Require encrypted transport
+                    </label>
+                </div>
+                <div class="settings-field">
+                    <label>
+                        <input type="checkbox" id="forceSecureTransport">
+                        Force HTTPS/WSS for public endpoints
+                    </label>
+                </div>
+                <div class="settings-field">
+                    <label for="transmitIntervalSec">Transmit interval (seconds)</label>
+                    <input type="number" id="transmitIntervalSec" min="10" max="3600" placeholder="e.g. 60">
+                </div>
+                <div class="settings-field auth-actions">
+                    <button id="testTransmit" type="button" class="button secondary">Send Test Transmission</button>
+                    <p id="transmitResult" class="subtitle"></p>
+                </div>
+            </section>
+            <section class="settings-card">
+                <h2>Developer API Key</h2>
+                <div class="settings-field">
+                    <label for="apiKey">API Key</label>
+                    <input type="text" id="apiKey" placeholder="Paste or generate a secure key here">
+                </div>
+                <div class="auth-actions">
+                    <button id="generateApiKey" type="button" class="button secondary">Generate Secure Key</button>
+                </div>
+                <p id="apiKeyStatus" class="subtitle"></p>
+            </section>
+            <section id="administratorSection" class="settings-card hidden">
+                <h2>Administrator Tools</h2>
+                <p class="subtitle">Only administrator users can reset the system totalizer.</p>
+                <div class="settings-field">
+                    <label>Current totalizer</label>
+                    <div id="totalizerValue">Loading…</div>
+                </div>
+                <div class="auth-actions">
+                    <button id="resetTotalizerButton" type="button" class="button button-danger">Reset Totalizer</button>
+                </div>
+                <p id="totalizerMessage" class="subtitle"></p>
+            </section>
+            <section class="settings-card auth-actions">
+                <button id="saveDevSettings" type="button" class="button">Save Developer Settings</button>
+                <p id="devSettingsMessage"></p>
+            </section>
+        </main>
+    </div>
+    <script src="{{ url_for('static', filename='js/pages/common.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/pages/developer_panel.js') }}"></script>
+</body>
+</html>

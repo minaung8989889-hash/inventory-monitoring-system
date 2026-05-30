@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sign In - Industrial Inventory Monitoring</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="auth-page">
+        <div class="auth-card">
+            <h1>Sign In</h1>
+            <p class="subtitle">Access your Industrial Inventory Monitoring dashboard.</p>
+            <div class="settings-field">
+                <label for="loginUsername">Username</label>
+                <input id="loginUsername" placeholder="Username" autocomplete="username">
+            </div>
+            <div class="settings-field">
+                <label for="loginPassword">Password</label>
+                <input type="password" id="loginPassword" placeholder="Password" autocomplete="current-password">
+            </div>
+            <div class="settings-field">
+                <label for="loginOtp">2FA Code (if enabled)</label>
+                <input id="loginOtp" placeholder="123456" autocomplete="one-time-code">
+                <div id="login2faNote" class="settings-note"></div>
+            </div>
+            <div id="loginError" class="error-message hidden"></div>
+            <div class="auth-actions">
+                <button class="button" id="loginButton">Sign In</button>
+                <button type="button" class="button button-secondary button-sm" id="forgotPasswordToggle">Forgot password?</button>
+            </div>
+            <div id="forgotPasswordPanel" class="hidden auth-card auth-card-secondary">
+                <div class="settings-field">
+                    <label for="resetUsername">Username</label>
+                    <input id="resetUsername" placeholder="Username">
+                </div>
+                <div class="settings-field">
+                    <label for="resetEmail">Email</label>
+                    <input id="resetEmail" placeholder="Email">
+                </div>
+                <div class="settings-field">
+                    <label for="resetPassword">New password</label>
+                    <input type="password" id="resetPassword" placeholder="New password">
+                </div>
+                <div class="settings-field">
+                    <label for="resetConfirmPassword">Confirm new password</label>
+                    <input type="password" id="resetConfirmPassword" placeholder="Confirm new password">
+                </div>
+                <div class="auth-actions">
+                    <button class="button" id="resetPasswordButton">Reset password</button>
+                    <button class="button button-secondary button-sm" id="cancelResetPassword">Back to login</button>
+                </div>
+            </div>
+            <p class="auth-footer">Don't have an account? <a href="{{ url_for('register_page') }}">Create one</a>.</p>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/auth.js') }}"></script>
+</body>
+</html>

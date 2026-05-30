@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Profile - Industrial Inventory Monitoring</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="page-shell">
+        <header class="page-header">
+            <div>
+                <h1>Profile</h1>
+                <p class="subtitle">Review and update your personal account settings.</p>
+            </div>
+            <nav class="page-nav">
+                <a href="/dashboard">Dashboard</a>
+                <a href="/profile">Profile</a>
+                <a href="/settings">Settings</a>
+                <a href="/user-management">User Management</a>
+                <a href="/privacy">Privacy</a>
+                <a href="/security">Security</a>
+                <a href="/developer">Developer</a>
+                <a href="/pos-management">POS Management</a>
+                <a href="#" id="logoutLink" class="nav-button">Logout</a>
+            </nav>
+        </header>
+        <main class="page-main">
+            <section class="settings-card">
+                <h2>Account details</h2>
+                <p><strong>Username:</strong> <span id="profileUsername">—</span></p>
+                <p><strong>Email:</strong> <span id="profileEmail">—</span></p>
+                <p><strong>Role:</strong> <span id="profileRole">—</span></p>
+                <p><strong>Status:</strong> <span id="profileStatus">—</span></p>
+            </section>
+            <section class="settings-card">
+                <h2>Change password</h2>
+                <form id="profileForm">
+                    <div class="settings-field">
+                        <label for="profilePassword">New password</label>
+                        <input type="password" id="profilePassword" placeholder="Enter new password">
+                    </div>
+                    <div class="auth-actions">
+                        <button type="submit" class="button">Save password</button>
+                    </div>
+                </form>
+            </section>
+        </main>
+    </div>
+    <script src="{{ url_for('static', filename='js/pages/common.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/pages/profile.js') }}"></script>
+</body>
+</html>

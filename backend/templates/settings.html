@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Settings - Industrial Inventory Monitoring</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="page-shell">
+        <header class="page-header">
+            <div>
+                <h1>Settings</h1>
+                <p class="subtitle">System preferences and account customization.</p>
+            </div>
+            <nav class="page-nav">
+                <a href="/dashboard">Dashboard</a>
+                <a href="/profile">Profile</a>
+                <a href="/settings">Settings</a>
+                <a href="/user-management">User Management</a>
+                <a href="/privacy">Privacy</a>
+                <a href="/security">Security</a>
+                <a href="/developer">Developer</a>
+                <a href="/pos-management">POS Management</a>
+                <a href="#" id="logoutLink" class="nav-button">Logout</a>
+            </nav>
+        </header>
+        <main class="page-main">
+            <section class="settings-card">
+                <h2>Your settings</h2>
+                <p><strong>Username:</strong> <span id="settingsUser">—</span></p>
+                <p><strong>Role:</strong> <span id="settingsRole">—</span></p>
+                <p><strong>Email:</strong> <span id="settingsEmail">—</span></p>
+            </section>
+            <section class="settings-card">
+                <h2>Update account</h2>
+                <form id="settingsForm">
+                    <div class="settings-field">
+                        <label for="settingsPassword">New password</label>
+                        <input type="password" id="settingsPassword" placeholder="Leave blank to keep current password">
+                    </div>
+                    <div class="settings-field">
+                        <label for="settingsRoleSelect">Request role</label>
+                        <select id="settingsRoleSelect">
+                            <option value="viewer">Viewer</option>
+                            <option value="auditor">Auditor</option>
+                            <option value="operator">Operator</option>
+                            <option value="master">Master</option>
+                        </select>
+                    </div>
+                    <div class="auth-actions">
+                        <button type="submit" class="button">Save changes</button>
+                    </div>
+                </form>
+            </section>
+        </main>
+    </div>
+    <script src="{{ url_for('static', filename='js/pages/common.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/pages/settings.js') }}"></script>
+</body>
+</html>

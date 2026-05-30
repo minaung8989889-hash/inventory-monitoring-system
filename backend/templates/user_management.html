@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Management - Industrial Inventory Monitoring</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="page-shell">
+        <header class="page-header">
+            <div>
+                <h1>User Management</h1>
+                <p class="subtitle">Approve accounts and manage user roles.</p>
+            </div>
+            <nav class="page-nav">
+                <a href="/dashboard">Dashboard</a>
+                <a href="/profile">Profile</a>
+                <a href="/settings">Settings</a>
+                <a href="/user-management">User Management</a>
+                <a href="/privacy">Privacy</a>
+                <a href="/security">Security</a>
+                <a href="/developer">Developer</a>
+                <a href="/pos-management">POS Management</a>
+                <a href="#" id="logoutLink" class="nav-button">Logout</a>
+            </nav>
+        </header>
+        <main class="page-main">
+            <div id="pageNotice" class="page-notice hidden"></div>
+            <section class="settings-card floating-card">
+                <div class="user-management-header">
+                    <div>
+                        <h2>User management</h2>
+                        <p class="subtitle">Approve accounts, assign roles, and share user API access securely.</p>
+                    </div>
+                    <div class="user-management-controls">
+                        <input id="userSearch" class="search-input" type="search" placeholder="Search users by name or email">
+                        <span id="userCountBadge" class="table-badge">Loading…</span>
+                    </div>
+                </div>
+                <div id="userManagementContent">Loading users…</div>
+            </section>
+        </main>
+    </div>
+
+    <aside class="float-panel" aria-label="Quick master controls">
+        <div class="float-panel-header">
+            <div>
+                <h3>Floating control panel</h3>
+                <p class="subtitle">Master quick actions and live status.</p>
+            </div>
+            <button class="button-secondary" type="button">Hide</button>
+        </div>
+        <div class="float-panel-content">
+            <div class="float-metric-row">
+                <div class="float-metric">
+                    <span class="float-metric-label">Active users</span>
+                    <strong id="floatActiveUsers">—</strong>
+                </div>
+                <div class="float-metric">
+                    <span class="float-metric-label">Pending approvals</span>
+                    <strong id="floatPendingApprovals">—</strong>
+                </div>
+            </div>
+            <div class="float-actions">
+                <button class="button">Refresh list</button>
+                <button class="button-secondary">Open settings</button>
+            </div>
+        </div>
+    </aside>
+
+    <script src="{{ url_for('static', filename='js/pages/common.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/pages/user_management.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Industrial Inventory Monitoring</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<div class="header">
+    <div>
+        <h1>Industrial Inventory Monitoring</h1>
+        <p class="subtitle">Live tank data, analytics, and system status</p>
+    </div>
+    <div class="status-panel">
+        <div class="status-badge status-disconnected" id="connectionStatus">Connecting...</div>
+        <div class="status-meta" id="lastUpdate">Last update: --</div>
+        <button class="button button-secondary" id="settingsToggle">Settings</button>
+    </div>
+</div>
+
+<div class="dashboard-summary" id="dashboardSummary">
+    <div class="summary-card">
+        <div class="summary-card-title">Tanks Monitored</div>
+        <div class="summary-card-value" id="summaryTanks">--</div>
+        <div class="summary-card-meta">Active vessel readings in real time</div>
+    </div>
+    <div class="summary-card">
+        <div class="summary-card-title">Average Fill</div>
+        <div class="summary-card-value" id="summaryAvgLevel">--%</div>
+        <div class="summary-card-meta">Current average tank level</div>
+    </div>
+    <div class="summary-card">
+        <div class="summary-card-title">Highest Temperature</div>
+        <div class="summary-card-value" id="summaryHighTemp">--°C</div>
+        <div class="summary-card-meta">Maximum measured temperature</div>
+    </div>
+    <div class="summary-card">
+        <div class="summary-card-title">Last Refresh</div>
+        <div class="summary-card-value" id="summaryLastRefresh">--</div>
+        <div class="summary-card-meta">Most recent dashboard update</div>
+    </div>
+</div>
+
+<div class="tank-grid" id="tankGrid">
+    <div class="empty-state" id="emptyState">Loading tank data...</div>
+</div>
+
+<div class="settings-panel hidden" id="settingsPanel">
+    <div class="settings-header">
+        <div>
+            <h2>Account Settings</h2>
+            <p class="settings-subtitle">Login or register with email. New accounts require master approval.</p>
+        </div>
+        <button class="close-button" id="closeSettings" aria-label="Close settings">×</button>
+    </div>
+    <div class="settings-body" id="settingsBody"></div>
+</div>
+
+<div class="modal hidden" id="tankModal">
+    <div class="modal-content">
+        <button class="close-modal" id="closeTankModal" aria-label="Close tank details">×</button>
+        <div id="tankModalContent"></div>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+
+<footer class="site-footer">
+    <div id="appVersion">Version: loading...</div>
+</footer>
+
+<script>
+// Try to read a static version file first (created by build), otherwise query the backend API.
+async function loadAppVersion() {
+    const el = document.getElementById('appVersion');
+    try {
+        const resp = await fetch('/static/js/version.json');
+        if (resp.ok) {
+            const v = await resp.json();
+            el.textContent = `Version: ${v.version} (${v.profile})`;
+            return;
+        }
+    } catch (e) {
+        // ignore
+    }
+    try {
+        const resp2 = await fetch('/api/version');
+        if (resp2.ok) {
+            const j = await resp2.json();
+            el.textContent = `Version: ${j.version} (${j.profile})`;
+            return;
+        }
+    } catch (e) {
+        // ignore
+    }
+    el.textContent = 'Version: unknown';
+}
+loadAppVersion();
+</script>
+
+</body>
+</html>

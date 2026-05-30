@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tankfarm POS Management - Industrial Inventory Monitoring</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="page-shell">
+        <header class="page-header">
+            <div>
+                <h1>Tankfarm POS Management</h1>
+                <p class="subtitle">One-year inventory record, monthly filters, and Excel-style export.</p>
+            </div>
+            <nav class="page-nav">
+                <a href="/dashboard">Dashboard</a>
+                <a href="/profile">Profile</a>
+                <a href="/settings">Settings</a>
+                <a href="/user-management">User Management</a>
+                <a href="/privacy">Privacy</a>
+                <a href="/security">Security</a>
+                <a href="/developer">Developer</a>
+                <a href="/pos-management">POS Management</a>
+                <a href="#" id="logoutLink" class="nav-button">Logout</a>
+            </nav>
+        </header>
+        <main class="page-main">
+            <section class="settings-card">
+                <div class="pos-filters">
+                    <div class="settings-field">
+                        <label for="posTankSelect">Tank</label>
+                        <select id="posTankSelect"></select>
+                    </div>
+                    <div class="settings-field">
+                        <label for="posMonthSelect">Month</label>
+                        <select id="posMonthSelect"></select>
+                    </div>
+                    <div class="settings-field">
+                        <label for="posDateFrom">Date from</label>
+                        <input id="posDateFrom" type="date">
+                    </div>
+                    <div class="settings-field">
+                        <label for="posDateTo">Date to</label>
+                        <input id="posDateTo" type="date">
+                    </div>
+                    <div class="settings-field">
+                        <label for="posTimeFrom">Time from</label>
+                        <input id="posTimeFrom" type="time">
+                    </div>
+                    <div class="settings-field">
+                        <label for="posTimeTo">Time to</label>
+                        <input id="posTimeTo" type="time">
+                    </div>
+                    <div class="settings-field">
+                        <label for="posSearchText">Search</label>
+                        <input id="posSearchText" type="search" placeholder="Tank, reading, notes">
+                    </div>
+                    <div class="settings-field">
+                        <label for="posMinVolume">Min volume</label>
+                        <input id="posMinVolume" type="number" min="0" placeholder="0">
+                    </div>
+                    <div class="settings-field">
+                        <label for="posMaxVolume">Max volume</label>
+                        <input id="posMaxVolume" type="number" min="0" placeholder="Any">
+                    </div>
+                    <div class="settings-field">
+                        <label for="posMinTemp">Min temp</label>
+                        <input id="posMinTemp" type="number" step="0.1" placeholder="°C">
+                    </div>
+                    <div class="settings-field">
+                        <label for="posMaxTemp">Max temp</label>
+                        <input id="posMaxTemp" type="number" step="0.1" placeholder="°C">
+                    </div>
+                    <div class="settings-field">
+                        <label for="posMinPressure">Min pressure</label>
+                        <input id="posMinPressure" type="number" step="0.01" placeholder="bar">
+                    </div>
+                    <div class="settings-field">
+                        <label for="posMaxPressure">Max pressure</label>
+                        <input id="posMaxPressure" type="number" step="0.01" placeholder="bar">
+                    </div>
+                    <button class="button" id="posReloadButton">Load records</button>
+                    <button class="button button-secondary" id="posExportButton">Download CSV</button>
+                </div>
+            </section>
+            <section class="settings-card">
+                <h2>Tank visuals</h2>
+                <div class="tank-visual-grid" id="tankVisualGrid"></div>
+            </section>
+            <section class="settings-card pos-summary-grid" id="posExtremeCards"></section>
+            <section class="settings-card pos-summary-grid" id="posSummaryCards"></section>
+            <section class="settings-card">
+                <h2>Monthly trend</h2>
+                <div class="pos-chart" id="posChart">Loading chart…</div>
+            </section>
+            <section class="settings-card">
+                <h2>POS inventory records</h2>
+                <div class="pos-table-wrapper" id="posTableWrapper">Loading data…</div>
+            </section>
+        </main>
+    </div>
+    <script src="{{ url_for('static', filename='js/pages/common.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/pages/pos_management.js') }}"></script>
+</body>
+</html>

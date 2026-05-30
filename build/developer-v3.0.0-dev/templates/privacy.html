@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Privacy - Industrial Inventory Monitoring</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="page-shell">
+        <header class="page-header">
+            <div>
+                <h1>Privacy</h1>
+                <p class="subtitle">Review our privacy policy and data handling practices.</p>
+            </div>
+            <nav class="page-nav">
+                <a href="/dashboard">Dashboard</a>
+                <a href="/profile">Profile</a>
+                <a href="/settings">Settings</a>
+                <a href="/user-management">User Management</a>
+                <a href="/privacy">Privacy</a>
+                <a href="/security">Security</a>
+                <a href="/developer">Developer</a>
+                <a href="/pos-management">POS Management</a>
+                <a href="#" id="logoutLink" class="nav-button">Logout</a>
+            </nav>
+        </header>
+        <main class="page-main">
+            <section class="settings-card">
+                <h2>Privacy policy</h2>
+                <p>We collect only the information required to authenticate users and display inventory tracking data. Account credentials and personal details are stored securely and are only used for system access, notifications, and administrative review.</p>
+                <p>Sensitive data, including passwords and two-factor secrets, is protected using secure hashing and token-based authentication. We do not share your private user data with third parties without explicit consent.</p>
+            </section>
+            <section class="settings-card">
+                <h2>Data handling</h2>
+                <p>You may request account removal or data export by contacting the system administrator. We retain operational log and historical tank readings only for service continuity and audit purposes.</p>
+            </section>
+        </main>
+    </div>
+    <script src="{{ url_for('static', filename='js/pages/common.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/pages/privacy.js') }}"></script>
+</body>
+</html>

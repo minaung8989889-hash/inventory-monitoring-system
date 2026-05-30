@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register - Industrial Inventory Monitoring</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="auth-page">
+        <div class="auth-card">
+            <h1>Create Account</h1>
+            <p class="subtitle">Register for access. Viewer accounts are approved immediately.</p>
+            <div class="settings-field">
+                <label for="registerUsername">Username</label>
+                <input id="registerUsername" placeholder="Username" autocomplete="username">
+            </div>
+            <div class="settings-field">
+                <label for="registerEmail">Email</label>
+                <input id="registerEmail" placeholder="Email" autocomplete="email">
+            </div>
+            <div class="settings-field">
+                <label for="registerPassword">Password</label>
+                <input type="password" id="registerPassword" placeholder="Password" autocomplete="new-password">
+            </div>
+            <div class="settings-field">
+                <label for="registerConfirmPassword">Confirm Password</label>
+                <input type="password" id="registerConfirmPassword" placeholder="Confirm Password" autocomplete="new-password">
+            </div>
+            <div class="settings-field">
+                <label for="registerRole">Requested access level</label>
+                <select id="registerRole">
+                    <option value="viewer">Viewer</option>
+                    <option value="auditor">Auditor</option>
+                    <option value="operator">Operator</option>
+                    <option value="administrator">Administrator</option>
+                </select>
+            </div>
+            <div id="registerError" class="error-message hidden"></div>
+            <div class="auth-actions">
+                <button class="button" id="registerButton">Register</button>
+                <button type="button" class="button button-secondary button-sm" id="registerToLogin">Back to login</button>
+            </div>
+            <p class="auth-note">New non-viewer roles require master approval before sign in.</p>
+            <p class="auth-footer">Already have an account? <a href="{{ url_for('login_page') }}">Sign in</a>.</p>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/auth.js') }}"></script>
+</body>
+</html>
